@@ -54,13 +54,13 @@ Cypress.Commands.add('addTransaction', data => {
         cy.get(loc.TRANSACTIONS.ACCOUNT).select(data.account)
 
     cy.get(loc.TRANSACTIONS.SAVE_BTN).click()
-    cy.clickIfExists(loc.MSG_CLOSE, {multiple: true, force: true})
+    cy.clickIfExists(loc.MSG_CLOSE, { multiple: true, force: true })
 })
 
 Cypress.Commands.add('resetData', () => {
     cy.get(loc.MENU.SETTINGS).click()
     cy.get(loc.MENU.RESET).click()
-    cy.clickIfExists(loc.MSG_CLOSE, {multiple: true, force: true})
+    cy.clickIfExists(loc.MSG_CLOSE, { multiple: true, force: true })
 })
 
 Cypress.Commands.add('clickIfExists', (selector, options) => {
@@ -69,4 +69,38 @@ Cypress.Commands.add('clickIfExists', (selector, options) => {
             cy.get(selector).click(options)
         }
     });
+})
+
+Cypress.Commands.add('getToken', (email, password) => {
+    cy.request({
+        url: '/signin',
+        method: 'POST',
+        body: {
+            email: email,
+            redirecionar: false,
+            senha: password
+        }
+    }).its('body.token').should('not.be.empty')
+        .then(token => {
+            Cypress.env('token', token)
+        })
+})
+
+Cypress.Commands.add('resetRest', () => {
+    cy.request({
+        method: 'GET',
+        url: '/reset'
+    })
+})
+
+Cypress.Commands.overwrite('request', (originalFn, ...options) => {
+    if (options.length === 1) {
+        if (Cypress.env('token')) {
+            options[0].headers = {
+                'Authorization': `JWT ${Cypress.env('token')}`
+            }
+        }
+    }
+
+    return originalFn(...options);
 })

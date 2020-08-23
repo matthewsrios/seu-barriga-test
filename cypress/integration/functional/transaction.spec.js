@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-import loc from '../support/locators';
-import '../support/accountCommands';
+import loc from '../../support/locators';
+import '../../support/accountCommands';
 
 
 const transactionAssertion = (description, value, isNegative, isPaid) => {
