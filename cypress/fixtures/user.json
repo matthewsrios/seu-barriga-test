@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Jhon Samples",
+    "email": "welonil480@sanizr.com",
+    "password": "test123"
+  },
+
+  {
+    "name": "Jhon Samples3",
+    "email": "welonil482@sanizr.com",
+    "password": "test123",
+    "accounts": [
+      {
+        "name": "account x"
+      },
+      {
+        "name": "account y"
+      },
+      {
+        "name": "account z"
+      }
+    ]
+  },
+  {
+    "name": "Jhon Samples5",
+    "email": "welonil99@sanizr.com",
+    "password": "test123"
+  }
+]
