@@ -9,7 +9,10 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "cy:open": "cypress open",
+     "cy:run": "cypress run",
+     "evidence:clean": "rm -rf cypress/screenshots/* cypress/videos/*"
   },
   "repository": {
     "type": "git",

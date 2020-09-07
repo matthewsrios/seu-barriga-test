@@ -4,7 +4,7 @@ import loc from '../../support/locators';
 import '../../support/accountCommands';
 
 
-const transactionAssertion = (description, value, isNegative, isPaid) => {
+const transactionAssertion = (description, value, isNegative) => {
     cy.get(loc.MSG).should('contain', 'Movimentação inserida com sucesso!')
     cy.xpath(loc.TRANSACTIONS.FN_XP_FIND_TRANSACTION(description, value, isNegative)).should('exist')
 }
@@ -31,7 +31,7 @@ describe('Transaction Management', () => {
                 isPaid,
                 value: '',
                 description: '',
-                toPerson: '',
+                senderOrReceiver: '',
                 account: ''
             })
             cy.get(loc.MSG).should('contain', 'code 400')
@@ -43,7 +43,7 @@ describe('Transaction Management', () => {
                 isPaid,
                 value: 200,
                 description: 'new money',
-                toPerson: 'XV Restaurant',
+                senderOrReceiver: 'XV Restaurant',
                 account: accountName,
             }
             cy.addTransaction(transactionInfo)
@@ -56,7 +56,7 @@ describe('Transaction Management', () => {
                 isPaid,
                 value: 200,
                 description: 'new money',
-                toPerson: 'XV Restaurant',
+                senderOrReceiver: 'XV Restaurant',
                 account: accountName,
             }
             cy.addTransaction(transactionInfo)

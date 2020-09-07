@@ -34,7 +34,7 @@ const locators = {
         DELETE_BTN: '.fa-trash-alt',
         SAVE_BTN: '.btn-primary',
         VALUE: '[data-test=valor]',
-        TO_PERSON: '[data-test=envolvido]',
+        SENDER_OR_RECEIVER: '[data-test=envolvido]',
         STATUS: '[data-test=status]',
         ACCOUNT: '[data-test=conta]',
         DESCRIPTION: '[data-test=descricao]',
@@ -45,7 +45,8 @@ const locators = {
 
             return `//span[contains(., '${description}')]/following-sibling::small[contains(., '${value}')]`
         },
-        FN_XP_FIND_REMOVE_TRANSACTION: description => `//span[contains(., '${description}')]/../../..//i[contains(@class, 'fa-trash-alt')]`
+        FN_XP_FIND_REMOVE_TRANSACTION: description => `//span[contains(., '${description}')]/../../..//i[contains(@class, 'fa-trash-alt')]`,
+        FN_XP_FIND_BY_DESCRIPTION: description => `//span[contains(., '${description}')]/../../../..`
     },
     MSG: '.toast-message',
     MSG_CLOSE: '.toast-close-button',

@@ -39,7 +39,7 @@ Cypress.Commands.add('addTransaction', data => {
         cy.get(loc.TRANSACTIONS.NEGATIVE_BTN).click()
 
     if (data.isPaid)
-        cy.get(loc.TRANSACTIONS.STATUS).click()
+        cy.clickIfExists(loc.TRANSACTIONS.STATUS, {force: true})
 
     if (data.description !== '')
         cy.get(loc.TRANSACTIONS.DESCRIPTION).type(data.description)
@@ -47,14 +47,13 @@ Cypress.Commands.add('addTransaction', data => {
     if (data.value !== '')
         cy.get(loc.TRANSACTIONS.VALUE).type(data.value)
 
-    if (data.toPerson !== '')
-        cy.get(loc.TRANSACTIONS.TO_PERSON).type(data.toPerson)
+    if (data.senderOrReceiver !== '')
+        cy.get(loc.TRANSACTIONS.SENDER_OR_RECEIVER).type(data.senderOrReceiver)
 
     if (data.account !== '')
         cy.get(loc.TRANSACTIONS.ACCOUNT).select(data.account)
 
     cy.get(loc.TRANSACTIONS.SAVE_BTN).click()
-    cy.clickIfExists(loc.MSG_CLOSE, { multiple: true, force: true })
 })
 
 Cypress.Commands.add('resetData', () => {
